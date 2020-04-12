@@ -8,15 +8,13 @@ import javax.persistence.Id;
 @Entity
 public class Person {
 
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     private String firstName;
     private String lastName;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
-
-    public Person(String firstName, String lastName, int id) {
+    public Person(String firstName, String lastName, long id) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.id = id;
@@ -25,9 +23,7 @@ public class Person {
     public Person() {
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
+    public String getFirstName() {return firstName;}
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
@@ -41,11 +37,11 @@ public class Person {
         this.lastName = lastName;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 }
