@@ -1,10 +1,29 @@
 package io.zipcoder.crudapp;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Person {
+
 
     private String firstName;
     private String lastName;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+
+    public Person(String firstName, String lastName, int id) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.id = id;
+    }
+
+    public Person() {
+    }
 
     public String getFirstName() {
         return firstName;
@@ -28,8 +47,5 @@ public class Person {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public Person() {
     }
 }
