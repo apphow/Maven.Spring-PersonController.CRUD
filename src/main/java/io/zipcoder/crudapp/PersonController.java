@@ -20,36 +20,35 @@ public class PersonController {
         this.personRepository = personRepository;
     }
 
-    @GetMapping("/person{id}")
+    @GetMapping("/person/{id}")
     public Person getPerson(@PathVariable("id") int id) {
         return personRepository.findById(id);
     }
 
-    @PostMapping
-    public ResponseEntity<Object> createPerson(@RequestBody Person person) {
+    @PostMapping("/person")
+    public ResponseEntity<Person> createPerson(@RequestBody Person person) {
 
         return ResponseEntity.status(HttpStatus.MULTI_STATUS.INTERNAL_SERVER_ERROR).build();
     }
 
-    @GetMapping
+    @GetMapping("/personList")
     public List<Person> getPersonList() {
         return personRepository.findAll();
     }
 
-    @PutMapping
+    @PutMapping(value = "/person/{id}")
     public ResponseEntity<Object> updatePerson(@RequestBody Person person, @PathVariable int id){
         Optional<Person> existingPerson = Optional.ofNullable(personRepository.findById(id));
         person.setLastName("Smith");
         return ResponseEntity.status(HttpStatus.MULTI_STATUS.INTERNAL_SERVER_ERROR).build();
     }
 
-    @DeleteMapping
-    public ResponseEntity<Object> delete(@PathVariable int id) {
+    @DeleteMapping("/person/{id}")
+    public ResponseEntity<Person> delete(@PathVariable int id) {
         personRepository.delete(id);
         return ResponseEntity.ok().build();
     }
 }
-
 
     /*
     http://javawebtutor.com/articles/spring/spring-mvc-hibernate-crud-example.php
@@ -61,6 +60,5 @@ public class PersonController {
         return new ModelAndView("redirect:/");
 
      */
-
 
 //https://docs.microsoft.com/en-us/aspnet/web-api/overview/older-versions/creating-a-web-api-that-supports-crud-operations
