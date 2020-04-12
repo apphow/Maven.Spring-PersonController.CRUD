@@ -15,7 +15,7 @@ interface PersonRepository extends CrudRepository<Person, Integer> {
 
     Person findOne(int id);
 
-    Object save (Person person);
+    Person save (Person person);
 
     void delete(int id);
 }
